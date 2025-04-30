@@ -13,7 +13,7 @@ interface Props {
 
 export default function AppLayout({ children }: Readonly<Props>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="autumn">
       <body>{children}</body>
     </html>
   );
