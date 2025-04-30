@@ -1,6 +1,12 @@
+import { Metadata } from "next";
+
 import CheckinFormComponent from "@/components/CheckinForm";
 import CheckinSuccessModalComponent from "@/components/CheckinSuccessModal";
 import DateTimeBadgesComponent from "@/components/DateTimeBadges";
+
+export const metadata: Metadata = {
+  title: "Check In | Skill Hub by iLAB",
+};
 
 export default function CheckinPage() {
   return (
