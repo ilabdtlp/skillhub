@@ -1,6 +1,7 @@
 import { Abril_Fatface } from "next/font/google";
 
 const abrilFatface = Abril_Fatface({
+  subsets: ["latin"],
   weight: "400",
   display: "swap",
 });

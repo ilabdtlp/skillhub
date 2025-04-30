@@ -5,6 +5,7 @@ import { Lato } from "next/font/google";
 import "./globals.css";
 
 const lato = Lato({
+  subsets: ["latin"],
   weight: ["400"],
   display: "swap",
 });
