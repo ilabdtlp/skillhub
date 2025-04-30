@@ -2,6 +2,7 @@ import { Abril_Fatface } from "next/font/google";
 
 const abrilFatface = Abril_Fatface({
   weight: "400",
+  display: "swap",
 });
 
 export default function HeroComponent() {

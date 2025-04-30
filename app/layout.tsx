@@ -6,6 +6,7 @@ import "./globals.css";
 
 const lato = Lato({
   weight: ["400"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
