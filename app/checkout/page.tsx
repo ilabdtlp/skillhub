@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
 import CheckoutFormComponent from "@/components/CheckoutForm";
-import CheckoutSuccessModalComponent from "@/components/CheckoutSuccessModal";
 import DateTimeBadgesComponent from "@/components/DateTimeBadges";
 
 export const metadata: Metadata = {
@@ -16,7 +15,6 @@ export default function CheckinPage() {
         <DateTimeBadgesComponent />
       </div>
       <CheckoutFormComponent />
-      {/* <CheckoutSuccessModalComponent /> */}
     </main>
   );
 }
