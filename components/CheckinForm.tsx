@@ -14,7 +14,7 @@ export default function CheckinFormComponent() {
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Select your age group</legend>
 
-        <select defaultValue="15-25" className="select w-full">
+        <select defaultValue="15-25" className="select w-full" required>
           <option value="below-15">Below 15</option>
           <option value="15-25">15 to 25</option>
           <option value="25-45">25 to 45</option>
@@ -32,6 +32,7 @@ export default function CheckinFormComponent() {
             name="gender"
             value="male"
             aria-label="Male"
+            required
           />
           <input
             className="join-item btn btn-neutral btn-outline flex-1"
@@ -39,6 +40,7 @@ export default function CheckinFormComponent() {
             name="gender"
             value="female"
             aria-label="Female"
+            required
           />
           <input
             className="join-item btn btn-neutral btn-outline flex-1"
@@ -46,6 +48,7 @@ export default function CheckinFormComponent() {
             name="gender"
             value="other"
             aria-label="Other"
+            required
           />
         </div>
       </fieldset>
@@ -53,7 +56,7 @@ export default function CheckinFormComponent() {
       <fieldset className="fieldset">
         <legend className="fieldset-legend">What is your purpose?</legend>
 
-        <select defaultValue="guest" className="select w-full">
+        <select defaultValue="guest" className="select w-full" required>
           <option value="guest">Guest</option>
           <option value="staff">Staff</option>
           <option value="dtlp">DTLP</option>

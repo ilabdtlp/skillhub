@@ -4,8 +4,10 @@ export default function CheckoutFormComponent() {
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Select your name</legend>
 
-        <select defaultValue="" className="select w-full">
-          <option value="">Select</option>
+        <select defaultValue="" className="select w-full" required>
+          <option value="" disabled>
+            Select
+          </option>
           <option value="john">John Doe</option>
           <option value="alex">Alex King</option>
         </select>
@@ -21,6 +23,7 @@ export default function CheckoutFormComponent() {
             className="mask mask-star"
             aria-label="1 star"
             value={1}
+            required
           />
           <input
             type="radio"
@@ -28,6 +31,7 @@ export default function CheckoutFormComponent() {
             className="mask mask-star"
             aria-label="2 star"
             value={2}
+            required
           />
           <input
             type="radio"
@@ -35,6 +39,7 @@ export default function CheckoutFormComponent() {
             className="mask mask-star"
             aria-label="3 star"
             value={3}
+            required
           />
           <input
             type="radio"
@@ -42,6 +47,7 @@ export default function CheckoutFormComponent() {
             className="mask mask-star"
             aria-label="4 star"
             value={4}
+            required
           />
           <input
             type="radio"
@@ -49,6 +55,7 @@ export default function CheckoutFormComponent() {
             className="mask mask-star"
             aria-label="5 star"
             value={5}
+            required
           />
         </div>
 
