@@ -1,13 +1,16 @@
-import Link from "next/link";
+import CheckoutFormComponent from "@/components/CheckoutForm";
+import CheckoutSuccessModalComponent from "@/components/CheckoutSuccessModal";
+import DateTimeBadgesComponent from "@/components/DateTimeBadges";
 
-export default function CheckoutPage() {
+export default function CheckinPage() {
   return (
-    <div className="flex h-svh flex-col items-center justify-center gap-4 text-center">
-      <h1 className="text-2xl font-bold">Check out of Skill Hub</h1>
-      <p>This page is under construction. 🚧</p>
-      <Link href="/" className="text-blue-600 underline">
-        Go to home page
-      </Link>
-    </div>
+    <main className="flex flex-1 flex-col items-center justify-center">
+      <div className="flex w-full max-w-md flex-col gap-4 p-8 pb-0">
+        <h1 className="text-xl font-bold">Check Out of Skill Hub</h1>
+        <DateTimeBadgesComponent />
+      </div>
+      <CheckoutFormComponent />
+      {/* <CheckoutSuccessModalComponent /> */}
+    </main>
   );
 }
