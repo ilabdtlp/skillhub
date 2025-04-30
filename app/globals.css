@@ -1,4 +1,10 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: autumn;
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "autumn";
+  default: true;
+  --color-base-content: #222426;
+}
+@utility hero__colored-text {
+  @apply relative z-10 after:absolute after:bottom-1 after:-left-1 after:-z-10 after:h-4 after:w-[calc(100%+8px)] sm:after:bottom-2 lg:after:-left-2 lg:after:h-6 lg:after:w-[calc(100%+16px)] 2xl:after:bottom-4;
 }

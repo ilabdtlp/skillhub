@@ -1,7 +1,12 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
+import { Lato } from "next/font/google";
 
 import "./globals.css";
+
+const lato = Lato({
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   title: "Skill Hub by iLAB",
@@ -14,7 +19,7 @@ interface Props {
 export default function AppLayout({ children }: Readonly<Props>) {
   return (
     <html lang="en" data-theme="autumn">
-      <body>{children}</body>
+      <body className={lato.className}>{children}</body>
     </html>
   );
 }
