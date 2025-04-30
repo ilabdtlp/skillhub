@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 
+import NavbarComponent from "@/components/Navbar";
+import FooterComponent from "@/components/Footer";
 import "./globals.css";
 
 const lato = Lato({
@@ -21,7 +23,11 @@ interface Props {
 export default function AppLayout({ children }: Readonly<Props>) {
   return (
     <html lang="en" data-theme="autumn">
-      <body className={lato.className}>{children}</body>
+      <body className={`${lato.className} flex min-h-svh flex-col`}>
+        <NavbarComponent />
+        {children}
+        <FooterComponent />
+      </body>
     </html>
   );
 }

@@ -8,7 +8,7 @@ const abrilFatface = Abril_Fatface({
 
 export default function HeroComponent() {
   return (
-    <div className="flex h-svh flex-col items-center justify-center gap-8 p-8 sm:gap-10 sm:px-16 md:gap-12 md:px-32 lg:px-48 xl:px-80">
+    <div className="flex flex-col items-center justify-center gap-8 p-8 sm:gap-10 sm:px-16 md:gap-12 md:px-32 lg:px-48 xl:px-80">
       <div className="flex flex-col items-center justify-center gap-4 text-center sm:gap-5 md:gap-6">
         <h1
           className={`${abrilFatface.className} -skew-2 text-5xl leading-14 sm:text-6xl sm:leading-16 lg:text-7xl lg:leading-20 2xl:text-8xl 2xl:leading-24`}
