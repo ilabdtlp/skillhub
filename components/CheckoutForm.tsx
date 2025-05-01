@@ -217,7 +217,11 @@ export default function CheckoutFormComponent() {
         </p>
       </fieldset>
 
-      <button type="submit" className="btn btn-primary btn-block mt-4">
+      <button
+        type="submit"
+        className="btn btn-primary btn-block mt-4"
+        disabled={isLoading}
+      >
         {isLoading ? (
           <span className="loading loading-spinner"></span>
         ) : (

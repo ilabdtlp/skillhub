@@ -1,8 +1,12 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import CheckinSuccessModalComponent from "./CheckinSuccessModal";
+
+type PendingCheckout = {
+  name: string;
+};
 
 export default function CheckinFormComponent() {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,6 +17,31 @@ export default function CheckinFormComponent() {
     gender: "",
     purpose: "Guest",
   });
+  const [pendingCheckouts, setPendingCheckouts] = useState<PendingCheckout[]>(
+    [],
+  );
+  const [nameConflict, setNameConflict] = useState(false);
+
+  useEffect(() => {
+    const fetchPendingCheckouts = async () => {
+      try {
+        const response = await fetch("/api/checkout", { method: "GET" });
+        const data: PendingCheckout[] = await response.json();
+        setPendingCheckouts(data);
+      } catch (error) {
+        console.error("Error fetching pending check outs:", error);
+      }
+    };
+
+    fetchPendingCheckouts();
+  }, []);
+
+  const handleNameChange = (name: string) => {
+    setFormData({ ...formData, name });
+
+    const conflict = pendingCheckouts.some((row) => row.name === name);
+    setNameConflict(conflict);
+  };
 
   const getFormattedTimestamp = (): string => {
     const now = new Date();
@@ -84,11 +113,16 @@ export default function CheckinFormComponent() {
         <input
           required
           type="text"
-          className="input w-full"
+          className={`input w-full ${nameConflict && "input-error"}`}
           placeholder="John Doe"
           value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          onChange={(e) => handleNameChange(e.target.value)}
         />
+        {nameConflict && (
+          <p className="text-error label">
+            A person with same name is already checked in.
+          </p>
+        )}
       </fieldset>
 
       <fieldset className="fieldset">
