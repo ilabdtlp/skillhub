@@ -70,7 +70,7 @@ export default function Form() {
     const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
 
-    return `${hours} h, ${minutes} m, ${seconds} s`;
+    return `${hours}h, ${minutes}m, ${seconds}s`;
   };
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
