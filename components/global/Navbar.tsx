@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function NavbarComponent() {
+export default function Navbar() {
   return (
     <nav className="navbar">
+      {/* Navbar logo */}
       <Link href="/" className="navbar-start">
         <Image
           src="/logo.png"
@@ -14,7 +15,9 @@ export default function NavbarComponent() {
         />
       </Link>
 
+      {/* Navbar links dropdown */}
       <div className="dropdown dropdown-end ml-auto">
+        {/* Dropdown toggle button */}
         <div
           tabIndex={0}
           role="button"
@@ -35,12 +38,14 @@ export default function NavbarComponent() {
             />
           </svg>
         </div>
+
+        {/* Dropdown list */}
         <ul
           tabIndex={0}
           className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
         >
           <li className="btn-success btn-soft">
-            <Link href="/checkin">
+            <Link href="/checkin/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -60,7 +65,7 @@ export default function NavbarComponent() {
           </li>
 
           <li className="btn-error btn-soft">
-            <Link href="/checkout">
+            <Link href="/checkout/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -80,7 +85,7 @@ export default function NavbarComponent() {
           </li>
 
           <li className="btn-error btn-soft">
-            <Link href="/occupants">
+            <Link href="/occupants/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

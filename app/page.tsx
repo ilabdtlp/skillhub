@@ -1,9 +1,9 @@
-import HeroComponent from "@/components/Hero";
+import { Hero } from "@/components/root";
 
-export default function AppPage() {
+export default function RootPage() {
   return (
     <main className="flex flex-1 items-center justify-center">
-      <HeroComponent />
+      <Hero />
     </main>
   );
 }

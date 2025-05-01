@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
-import CheckoutSuccessModalComponent from "./CheckoutSuccessModal";
+import { SuccessModal } from "../shared";
 
 type PendingCheckout = {
   id: number;
@@ -14,12 +14,7 @@ type PendingCheckout = {
   checkoutTime?: string;
 };
 
-type FormData = {
-  name: string;
-  rating: string;
-};
-
-export default function CheckoutFormComponent() {
+export default function Form() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formData, setFormData] = useState({
@@ -127,7 +122,7 @@ export default function CheckoutFormComponent() {
   };
 
   return showSuccessModal ? (
-    <CheckoutSuccessModalComponent />
+    <SuccessModal action="checkout" />
   ) : (
     <form
       onSubmit={handleSubmit}

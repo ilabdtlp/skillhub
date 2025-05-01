@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
 
-const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(process.env.GOOGLE_SHEETS_CREDENTIALS || "{}"),
-  scopes: SCOPES,
+  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
 const sheets = google.sheets({ version: "v4", auth });
@@ -20,7 +19,6 @@ export async function GET() {
     });
 
     const rows = response.data.values || [];
-    const headers = rows[0];
     const data = rows.slice(1);
 
     const pendingCheckouts = data

@@ -2,13 +2,13 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
-import CheckinSuccessModalComponent from "./CheckinSuccessModal";
+import { SuccessModal } from "../shared";
 
 type PendingCheckout = {
   name: string;
 };
 
-export default function CheckinFormComponent() {
+export default function Form() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formData, setFormData] = useState({
@@ -102,7 +102,7 @@ export default function CheckinFormComponent() {
   };
 
   return showSuccessModal ? (
-    <CheckinSuccessModalComponent />
+    <SuccessModal action="checkin" />
   ) : (
     <form
       onSubmit={handleSubmit}

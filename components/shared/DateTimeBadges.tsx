@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function DateTimeBadgesComponent() {
+export default function DateTimeBadges() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {

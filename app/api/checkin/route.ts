@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
 
-const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_SHEETS_CREDENTIALS || "{}"), // Ensure this is set in your environment
-  scopes: SCOPES,
+  credentials: JSON.parse(process.env.GOOGLE_SHEETS_CREDENTIALS || "{}"),
+  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
 const sheets = google.sheets({ version: "v4", auth });
