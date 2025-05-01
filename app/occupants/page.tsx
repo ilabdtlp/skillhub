@@ -1,4 +1,9 @@
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "See Occupants | Skill Hub by iLAB",
+};
 
 export default function OccupantsPage() {
   return (
