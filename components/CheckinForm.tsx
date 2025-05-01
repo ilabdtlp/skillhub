@@ -40,7 +40,7 @@ export default function CheckinFormComponent() {
     try {
       const checkinTime = getFormattedTimestamp();
 
-      const response = await fetch("/api/sheets", {
+      const response = await fetch("/api/checkin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
