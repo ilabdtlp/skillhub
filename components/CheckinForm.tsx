@@ -1,6 +1,84 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+
+import CheckinSuccessModalComponent from "./CheckinSuccessModal";
+
 export default function CheckinFormComponent() {
-  return (
-    <form className="flex w-full max-w-md flex-col gap-2 p-8 sm:mt-4 sm:rounded-lg sm:shadow-lg">
+  const [isLoading, setIsLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    ageGroup: "15 to 25",
+    gender: "",
+    purpose: "Guest",
+  });
+
+  const getFormattedTimestamp = (): string => {
+    const now = new Date();
+
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const year = String(now.getFullYear());
+
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
+
+    const weekday = now.toLocaleDateString("en-US", { weekday: "long" });
+
+    return `${weekday}, ${day}/${month}/${year}, ${time}`;
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const checkinTime = getFormattedTimestamp();
+
+      const response = await fetch("/api/sheets", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          range: "checkin_data!A:D",
+          values: [
+            [
+              formData.name,
+              formData.ageGroup,
+              formData.gender,
+              formData.purpose,
+              checkinTime,
+            ],
+          ],
+        }),
+      });
+
+      setIsLoading(false);
+
+      if (!response.ok) {
+        throw new Error("Failed to submit data");
+      }
+
+      setShowSuccessModal(true);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+      alert("Failed to submit data.");
+    }
+  };
+
+  return showSuccessModal ? (
+    <CheckinSuccessModalComponent />
+  ) : (
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full max-w-md flex-col gap-2 p-8 sm:mt-4 sm:rounded-lg sm:shadow-lg"
+    >
       <fieldset className="fieldset">
         <legend className="fieldset-legend">What is your name?</legend>
         <input
@@ -8,17 +86,26 @@ export default function CheckinFormComponent() {
           type="text"
           className="input w-full"
           placeholder="John Doe"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         />
       </fieldset>
 
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Select your age group</legend>
 
-        <select defaultValue="15-25" className="select w-full" required>
-          <option value="below-15">Below 15</option>
-          <option value="15-25">15 to 25</option>
-          <option value="25-45">25 to 45</option>
-          <option value="45-above">45 Above</option>
+        <select
+          className="select w-full"
+          required
+          value={formData.ageGroup}
+          onChange={(e) =>
+            setFormData({ ...formData, ageGroup: e.target.value })
+          }
+        >
+          <option value="Below 15">Below 15</option>
+          <option value="15 to 25">15 to 25</option>
+          <option value="25 to 45">25 to 45</option>
+          <option value="45 Above">45 Above</option>
         </select>
       </fieldset>
 
@@ -30,25 +117,34 @@ export default function CheckinFormComponent() {
             className="join-item btn btn-neutral btn-outline flex-1"
             type="radio"
             name="gender"
-            value="male"
+            value="Male"
             aria-label="Male"
             required
+            onChange={(e) =>
+              setFormData({ ...formData, gender: e.target.value })
+            }
           />
           <input
             className="join-item btn btn-neutral btn-outline flex-1"
             type="radio"
             name="gender"
-            value="female"
+            value="Female"
             aria-label="Female"
             required
+            onChange={(e) =>
+              setFormData({ ...formData, gender: e.target.value })
+            }
           />
           <input
             className="join-item btn btn-neutral btn-outline flex-1"
             type="radio"
             name="gender"
-            value="other"
+            value="Other"
             aria-label="Other"
             required
+            onChange={(e) =>
+              setFormData({ ...formData, gender: e.target.value })
+            }
           />
         </div>
       </fieldset>
@@ -56,18 +152,33 @@ export default function CheckinFormComponent() {
       <fieldset className="fieldset">
         <legend className="fieldset-legend">What is your purpose?</legend>
 
-        <select defaultValue="guest" className="select w-full" required>
-          <option value="guest">Guest</option>
-          <option value="staff">Staff</option>
-          <option value="dtlp">DTLP</option>
-          <option value="clap">CLAP</option>
-          <option value="ceem">CEEM</option>
-          <option value="other-event">Other Event</option>
+        <select
+          className="select w-full"
+          required
+          value={formData.purpose}
+          onChange={(e) =>
+            setFormData({ ...formData, purpose: e.target.value })
+          }
+        >
+          <option value="Guest">Guest</option>
+          <option value="Staff">Staff</option>
+          <option value="DTLP">DTLP</option>
+          <option value="CLAP">CLAP</option>
+          <option value="CEEM">CEEM</option>
+          <option value="Other Event">Other Event</option>
         </select>
       </fieldset>
 
-      <button type="submit" className="btn btn-primary btn-block mt-4">
-        Check In
+      <button
+        type="submit"
+        className="btn btn-primary btn-block mt-4"
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <span className="loading loading-spinner"></span>
+        ) : (
+          "Check In"
+        )}
       </button>
     </form>
   );
